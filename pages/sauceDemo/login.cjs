@@ -13,7 +13,7 @@ exports.Login = class Login {
         this.loginButton = this.page.locator('#login-button');
         this.loginErrorMessage = this.page.locator('h3[data-test="error"]');
     }
-
+    
     async loginAs(username, password) {
         await this.page.goto(url);
         await this.userNameTextBox.fill(username);

@@ -16,13 +16,13 @@ test.beforeEach( () => {
     restExample = new RestExample();
 });
 
-test('GET device', async ({ request }) => {
+test('GET device by id', async ({ request }) => {
     const device = await restExample.getDeviceById(request, '9');
     console.log(device);
     expect(device.name).toContain('Beats Studio3 Wireless');
 });
 
-test('POST and PUT updated device then DELETE', async ({ request }) => {
+test('POST new device and PUT an update then DELETE', async ({ request }) => {
     const device = await restExample.postDevice(request, payload);
     console.log(device);
     expect(device.name).toBe(payload.name);
@@ -49,7 +49,7 @@ test('POST and PUT updated device then DELETE', async ({ request }) => {
     expect(deviceDelete.message).toContain(`${device.id} has been deleted`);
 });
 
-test('POST and PATCH updated device name only then DELETE', async ({ request }) => {
+test('POST new device and PATCH update to device name only then DELETE', async ({ request }) => {
     const device = await restExample.postDevice(request, payload);
     console.log(device);
     expect(device.name).toBe(payload.name);

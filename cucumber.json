@@ -1,0 +1,9 @@
+{
+    "default": {
+        "require": ["tests/bdd/steps/*step.cjs"],
+        "paths": ["tests/bdd/features/*.feature"],
+        "browser": "chromium",
+        "headless": false,
+        "timeout": 60000
+    }
+ }  

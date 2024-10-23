@@ -12,6 +12,10 @@ exports.Products = class Products {
         this.itemsLabels = this.page.locator(`xpath=//div[@class='inventory_item_label']`);
     }
 
+    async getPageHeader(){
+        return await expect(this.pageHeader).toBeVisible();
+    }
+
     getItemDetailsLink(itemName){
         return this.itemDetailsLink = this.page.locator(`(//div[@class='inventory_item_description']//a//div[contains(text(), '${itemName}')])`);
     }

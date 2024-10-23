@@ -3,21 +3,19 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-      "lint": "eslint --ext .jsx --fix src",
-      "apitest": "npx playwright test api.test.js",
-      "logintest": "npx playwright test login.test.cjs",
-      "end2endtest": "npx playwright test end2end.test.cjs"
+        "lint": "eslint --ext .jsx --fix src",
+        "apitest": "npx playwright test api.test.js",
+        "logintest": "npx playwright test login.test.cjs",
+        "end2endtest": "npx playwright test end2end.test.cjs",
+        "test": "cucumber-js test"
     },
     "dependencies": {
-      "body-parser": "^1.20.0",
-      "express": "^4.18.1",
-      "wait-on": "^8.0.1"
-    },
-    "devDependencies": {
-      "@playwright/test": "^1.25.1",
-      "eslint": "^8.23.0",
-      "eslint-plugin-react": "^7.31.1",
-      "playwright": "^1.25.1"
+        "@cucumber/cucumber": "^11.0.1",
+        "body-parser": "^1.20.0",
+        "express": "^4.18.1",
+        "wait-on": "^8.0.1",        
+        "@playwright/test": "^1.25.1",
+        "playwright": "^1.25.1",
+        "eslint": "^8.23.0"
     }
-  }
-  
+}

@@ -14,17 +14,18 @@ test.afterEach(async ({ page }) => {
     page.close();
 });
 
-test(`Login failed as locked_out_user`, async () => {
-    await login.loginAs('locked_out_user', password);
-    await login.getLoginErrorMessage('Sorry, this user has been locked out.');
-});
-
-test(`Login failed with invalid password`, async () => {
+test(`Login fails for user with invalid password`, async () => {
     await login.loginAs('standard_user', 'invalid!');
     await login.getLoginErrorMessage('Username and password do not match any user in this service');
 });
 
-test(`Single Login successful as standard_user`, async () => {
+
+test(`Login fails for user who is locked out of their account`, async () => {
+    await login.loginAs('locked_out_user', password);
+    await login.getLoginErrorMessage('Sorry, this user has been locked out.');
+});
+
+test(`Sigle successful login`, async () => {
     await login.loginAs('standard_user', password);
     await expect(products.pageHeader).toBeVisible();
 });
@@ -37,7 +38,7 @@ const testCases = [
     { username: 'visual_user' }
 ];
 for (const { username } of testCases) {
-    test(`Multiple Logins successful as ${username}`, async ({ page }) => {
+    test(`Multiple successful login as ${username}`, async ({ page }) => {
         await login.loginAs(username, password);
         await expect(products.pageHeader).toBeVisible();
     })
