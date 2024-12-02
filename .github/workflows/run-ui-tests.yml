@@ -1,0 +1,71 @@
+name: Run UI Tests
+on:
+  workflow_dispatch:
+    inputs:
+      BASE_URL:
+        description: 'BASE_URL'
+        default: 'https://www.saucedemo.com'
+        required: true
+      TEST_CATEGORY:
+        description: 'TEST_CATEGORY'
+        default: 'login'
+        required: true
+        type: choice
+        options:
+          - login
+          - login-negative
+          - login-positive
+          - end2end
+      BROWSER:
+        description: 'BROWSER (chromium, firefox, or webkit)'
+        default: 'chromium'
+        required: true
+        type: choice
+        options:
+          - chromium
+          - firefox
+          - webkit
+          - iPhone 15 Pro Max
+          - Pixel 7
+
+env:
+  BASE_URL: ${{ inputs.BASE_URL }}
+  BROWSER: ${{ inputs.BROWSER }}
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20' 
+
+    - name: Install dependencies
+      run: |
+        npm ci
+        npx playwright install --with-deps
+
+    - name: Run ${{ inputs.TEST_CATEGORY }} tests with ${{ inputs.BROWSER }} browser
+      run:  npm run ${{ inputs.TEST_CATEGORY }}
+
+    - name: Debug
+      run: ls -R
+      if: always()
+
+    - name: Create feature results report for ${{ inputs.TEST_CATEGORY }} tests
+      run: npm run report
+      if: always()  
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: Feature Results
+        path: |
+          featureReport.html
+          tmp/screenshots/*.png
+      if: always()

@@ -1,0 +1,10 @@
+{
+    "default": {
+        "import": [
+            "tests/steps/*step.js", 
+            "tests/support/hooks.js"
+        ],
+        "paths": ["tests/features/*.feature"],
+        "format": ["json:featureReport.json"]
+    }
+ }  

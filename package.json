@@ -1,0 +1,20 @@
+{
+    "name": "demo-playwright",
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "api": "cucumber-js --tags @api",
+        "login": "cucumber-js --tags @login --parallel 2",
+        "login-negative": "cucumber-js --tags \"@login and @negative\"",
+        "login-positive": "cucumber-js --tags \"@login and @positive\"",
+        "end2end": "cucumber-js --tags @end2end --parallel 2",
+        "report": "node tests/support/report.js"
+    },
+    "dependencies": {
+        "@cucumber/cucumber": "11.0.1",
+        "@playwright/test": "1.48.2",
+        "cucumber-html-reporter": "6.0.0",
+        "dotenv": "16.4.5",
+        "playwright": "1.48.2"
+    }
+}

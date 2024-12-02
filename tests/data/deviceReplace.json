@@ -1,0 +1,9 @@
+{
+    "name": "Apple iPhone 16 Pro Max",
+    "data": {
+        "year": 2024,
+        "price": 1299.99,
+        "capacity_gb": "512",
+        "color": "silver"
+    }
+}

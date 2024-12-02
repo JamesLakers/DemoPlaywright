@@ -1,0 +1,9 @@
+{
+    "name": "Apple iPhone 14 Pro",
+    "data": {
+        "year": 2022,
+        "price": 799.99,
+        "capacity_gb": "256",
+        "color": "black"
+    }
+}
